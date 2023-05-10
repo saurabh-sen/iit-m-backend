@@ -120,7 +120,7 @@ app.get("/librarian", authenticateRole, async (req, res) => {
     const myColl = myDB.collection("books");
     const myColltMembers = myDB.collection("users");
     const result = await myColl.find({}).toArray();
-    let resultMembers = await myColltMembers.find({}).toArray();
+    let resultMembers = await myColltMembers.find({ role: 'member' }).toArray();
 
     return res.status(200).json({
       status: 200,
